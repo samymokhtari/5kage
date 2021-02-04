@@ -9,16 +9,23 @@ function readVideos($directory){
             Épisodes
         </a>";
         echo "<div class='dropdown-menu dropdown-menu-lg-right' id='videos' aria-labelledby='dropdownMenuButton'>";
-        //echo "<h2>TEST</h2>";
+        
+        $videos = [];
+
         while($file = readdir($dir)) {
             $path = $directory .'/'. $file;
             $mimeType = mime_content_type($path);
             if($mimeType == "video/mp4"){
-                $title = str_replace('.mp4', '', $file);
-                echo "<a class='dropdown-item' data-toggle='list' role='tab' href='$file'>$title</a>";
+                /*$title = str_replace('.mp4', '', $f);*/
+                $title = basename($path,".mp4");
+                $videos[$file] = $title;
+                //echo "<a class='dropdown-item' data-toggle='list' role='tab' href='$file'>$title</a>";
             }
         }
-        
+        sort($videos);
+        foreach($videos as $key => $value){
+            echo "<a class='dropdown-item' data-toggle='list' role='tab' href='$key'>$value</a>";
+        }
         echo "</div></div>";
     }
 }

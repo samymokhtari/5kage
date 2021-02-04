@@ -19,16 +19,21 @@ function uploadFiles() {
   if(!file_exists($fullpath)){
     mkdir($fullpath, 0777, true);
   }
+
+  $filesUploaded = [];
   // Looping all files
   for($i=0;$i<$countfiles;$i++){
     $filename = $_FILES['file']['name'][$i];
-    $filesize = $_FILES['file']['size'][$i];
+    $filesize = number_format(($_FILES['file']['size'][$i] / 1000000),2);
 
     // Upload file
     move_uploaded_file($_FILES['file']['tmp_name'][$i],$fullpath.$filename);
-    echo "<li>Fichier: $filename =>  $filesize OK</li>"; 
+    array_push($filesUploaded, "<li>Fichier : <strong>$filename</strong> 	→  $filesize Mo ✔</li>");
   }
-  echo ("<p class='alert alert-success text-center' role='alert'>Les épisodes pour l'anime <strong>". $_POST['name'] ."</strong> ont bien été téléchargés.</p>");
+  echo ("<p class='alert alert-success text-center' role='alert'>Les épisodes de la saison <strong>". $_POST['season'] ."</strong> pour l'anime <strong>". $_POST['name'] ."</strong> ont bien été téléchargés.</p>");
+  foreach($filesUploaded as $msg){
+    echo $msg;
+  }
 } 
 
 
@@ -89,6 +94,7 @@ function uploadFiles() {
                         <input class="btn btn-success input-group-text" type='submit' name='submit' value='Envoyer'/>
                       </div>
                     </div>
+                    <p class="p-3 mb-2 text-light bg-dark">Veuillez ne pas upload plus de 5 Go à la fois.</p>
                   </div>
                   <ul id="file-uploaded">
 
