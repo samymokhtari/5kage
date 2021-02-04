@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap');
+
+* {
+    color :rgb(235, 235, 235);
+}
+
+h1 {
+    color : black;
+}
+
+button.block {
+    display: block;
+    width: 100%;
+    color:rgb(0, 0, 0);
+    /*background-color: #ffffffe8;*/
+}
+
+div.tree-view.h1 {
+    color: black;
+}
+
+div.tree-view{
+    margin: 40px 30% 50px 30%;
+    padding: 20px 3% 30px 3%;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    box-shadow: 2px 2px 2px rgb(0, 109, 45);
+}
+
+div.directories{
+    margin-bottom: 20px;
+}
+
+
+body {
+    background:#121212;
+    background: linear-gradient(90deg, rgb(19, 19, 19) 0%, rrgb(13, 3, 6)35%, rgb(15, 15, 15) 93%);
+}
+
+main {
+    text-align: center;
+}
+
+
+
+
+/* VIDEOS */
+
+.videos {
+    margin: 0 30% 0 30%;
+}
+
+#video {
+    padding: 20px;
+    background-color: rgb(12, 12, 12);
+}
+
+#dropdownMenuLink {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.navigation-content {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 20px;
+}

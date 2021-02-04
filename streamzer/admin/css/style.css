@@ -1,0 +1,27 @@
+body {
+    background-color: rgb(241, 241, 241);
+}
+
+#navigation-bar {
+    background: black;
+}
+
+#upload-file {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    
+}
+
+.fields{
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 0%;
+    background-color: rgb(224, 224, 224);
+    filter: drop-shadow(0 0 0.15rem rgb(0, 0, 0));
+}
+
+.navigation-content {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 20px;
+}
