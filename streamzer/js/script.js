@@ -1,5 +1,8 @@
 /* Cache le lecteur vidéo et la liste déroulante des épisodes si il y'en a pas dans le répertoire en question */
 $('#video').hide();
+window.HELP_IMPROVE_VIDEOJS = false;
+
+
 
 if ($('#videos').children().length == 0){
     $('#dropdownMenuLink').hide();
@@ -11,24 +14,18 @@ $('#videos a').on('click', function (e) {
     loadVideo(video)
 })
 
+
+
 /* Charge une vidéo à l'aide de son chemin passé en paramètre */
 function loadVideo(video) {
-    var myVideo = document.getElementById('videoPlayer');
+    let fullPathVideo = getParameter('directory')+ '/'+ video + '.mp4';
+    fullPathVideo = fullPathVideo.replaceAll('+',' ').replaceAll('%2F', '/');
 
-    if (myVideo.canPlayType('video/mp4')) {
-        var fullPathVideo = getParameter('directory')+ '/'+ video + '.mp4';
-        fullPathVideo = fullPathVideo.replaceAll('+',' ').replaceAll('%2F', '/');
-        console.log(fullPathVideo);
-        myVideo.setAttribute('src', fullPathVideo);
-    }else{
-        var message = document.createElement('p');
-        message.textContent("Impossible de lire la vidéo 😔");
-    }
+    var myPlayer = videojs('my-video');
+    myPlayer.src({type: 'video/mp4', src: fullPathVideo});
+    myPlayer.volume(0.3);
 
-    myVideo.width = 1280;
-    myVideo.height = 720;
-    var title = document.getElementById('title');
-    title.textContent = video;
+    $('#title').text(video);
     $('#video').show();
 }
 
