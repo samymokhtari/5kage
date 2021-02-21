@@ -25,16 +25,15 @@ include 'directories.php';
         <!-- VIDEO.JS -->
         <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
         <link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-quality-levels/2.0.9/videojs-contrib-quality-levels.min.js"></script>
-        <script src="./node_modules/videojs-hls-quality-selector/dist/videojs-hls-quality-selector.min.js"></script>
+        <link href="css/header.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/footer.css" rel="stylesheet">
     </head>
     <body>
         <?php include("header.php"); ?>
         <main>
+            <section>
             <?php
-
             /* Si un paramètre est passé dans la requête (exemple: http://localhost/streaming/index.php?directory=animes%2FMy+Hero+Academia) affiche le dossier en question */
             if($_SERVER['REQUEST_METHOD'] == "GET" and isset($_GET['directory']))
             {
@@ -46,25 +45,26 @@ include 'directories.php';
                 readDirectory("animes");
             }   
             ?>
-
+            </section>
             
-            <div id="video" class="vjs-fade-out fadeInOpacity">
-                <label for="my-video" id="title"></label>
-                <video
-                    id="my-video"
-                    class="video-js vjs-big-play-centered vjs-theme-fantasy "
-                    controls
-                    preload="auto"
-                    data-setup='{}'>
-                    <!-- ./animes/My Hero Academia/Saison 3/01.mp4 -->
-                    
-                    <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a
-                    web browser that
-                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> 😞
-                    </p>
-                </video>
-            </div>
+            <section id="div-video" class="vjs-fade-out fadeInOpacity">
+                    <div class="video-informations">
+                        <label for="my-video" id="title"></label>
+                    </div>
+
+                    <video 
+                    controls 
+                    type="video/mp4" 
+                    preload="auto" 
+                    id="my-video" 
+                    controlsList="nodownload">
+                        Sorry, your browser doesn't support embedded videos. 😞
+                    </video>
+                    <div class="video-controls">
+                        <button id="previous" value="" class="btn btn-outline-info" action="loadVideo()" >Épisode précédent</button>
+                        <button id="next" value="" class =" btn btn-outline-info" action="loadVideo()">Épisode suivant</button>
+                    </div>
+            </section>
         </main>
 
         <?php include("footer.php"); ?>

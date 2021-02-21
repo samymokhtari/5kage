@@ -46,7 +46,7 @@ function uploadFiles() {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
+        <meta name="description" content="Ajouter un anime">
         <meta name="author" content="Hocem Boualleg, Samy Mokhtari">
         <title>Ajouter une vidéo</title>
 
@@ -68,7 +68,7 @@ function uploadFiles() {
           }
           ?>
 
-          <div id="upload-file">
+          <div id="form-container">
             <form method='post' action='' enctype='multipart/form-data'>
               <div class="container w-50">
                 <div class="row fields">

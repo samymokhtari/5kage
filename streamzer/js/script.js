@@ -1,18 +1,17 @@
 /* Cache le lecteur vidéo et la liste déroulante des épisodes si il y'en a pas dans le répertoire en question */
-$('#video').hide();
+$('#div-video').hide();
 window.HELP_IMPROVE_VIDEOJS = false;
-
-
 
 if ($('#videos').children().length == 0){
     $('#dropdownMenuLink').hide();
 }
 
-$('#videos a').on('click', function (e) {
+/* EVENT JAVASCRIPT */
+$('#previous,#next, #videos a').on('click', function (e) {
     e.preventDefault()
     const video = $(e.target).text();
     loadVideo(video)
-})
+});
 
 
 
@@ -21,12 +20,38 @@ function loadVideo(video) {
     let fullPathVideo = getParameter('directory')+ '/'+ video + '.mp4';
     fullPathVideo = fullPathVideo.replaceAll('+',' ').replaceAll('%2F', '/');
 
-    var myPlayer = videojs('my-video');
-    myPlayer.src({type: 'video/mp4', src: fullPathVideo});
-    myPlayer.volume(0.3);
+    let myPlayer = $('#my-video');
+    myPlayer.attr("src",fullPathVideo);
 
     $('#title').text(video);
-    $('#video').show();
+    $('#div-video').show();
+
+    configureNextAndPreviousVideo(video)
+}
+
+
+function configureNextAndPreviousVideo(currentVideo) {
+    const videos = getAllVideos();
+    currentVideoIndex = videos.indexOf(currentVideo);
+    if(videos[currentVideoIndex - 1]) {
+        $('#previous').show();
+        $('#previous').html(videos[currentVideoIndex - 1]);
+    }else{
+        $('#previous').hide();
+    }
+    if(videos[currentVideoIndex + 1]) {
+        $('#next').show();
+        $('#next').html(videos[currentVideoIndex + 1]);
+    }else {
+        $('#next').hide();
+    }
+}
+
+function getAllVideos() {
+    let videos = [];
+    $('.dropdown-item').each(function() { videos.push($(this).text()) });
+
+    return videos;
 }
 
 /* Récupère un paramètre GET à travers son nom (exemple: http://localhost/streaming/index.php?directory=animes   =>  si je passe 'directory' je récupère 'animes') */

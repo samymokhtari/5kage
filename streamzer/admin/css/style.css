@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap');
 
+* {
+    box-sizing: border-box
+} 
 
 body {
     background-color: rgb(241, 241, 241);
 }
 
-#navigation-bar {
-    background: black;
-}
-
-#upload-file {
+#form-container {
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: center;
@@ -27,4 +26,9 @@ body {
 .navigation-content {
     font-family: 'Londrina Solid', cursive;
     font-size: 20px;
+}
+
+/* Delete anime */
+.btn-group > .anime-item {
+
 }
