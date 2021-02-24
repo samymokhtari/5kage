@@ -13,7 +13,7 @@ include '../directories.php';
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-        <meta name="author" content="Hocem Boualleg, Samy Mokhtari">
+        <meta name="author" content="5KAGE">
         <title>Streamzer - Administration </title>
 
         <link rel="icon" href="../assets/logo.png" />

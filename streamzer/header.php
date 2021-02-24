@@ -3,5 +3,5 @@
     <img src="./assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Home - Streamzer">
     Streamzer
   </a>
-  <a alt="Lien vers interface d'administration" href="admin/index.php">Administration</a>
+  <a hreflang="fr-FR" href="admin/index.php">Administration</a>
 </nav>

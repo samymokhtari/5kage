@@ -1,4 +1,0 @@
-AuthUserFile /var/www/.htpasswd
-AuthName "Administrator page"
-AuthType Basic
-require user admin
