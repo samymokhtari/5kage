@@ -26,6 +26,7 @@ function readDirectory($name) {
                 array_push($animes,"<button class='btn-lg btn-dark btn-block btn' type='submit' name='directory' value='$path'>$file</button>");    
             }
         }
+        sort($animes);
         foreach($animes as $anime){
             echo $anime;
         }
