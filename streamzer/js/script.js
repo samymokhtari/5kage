@@ -8,9 +8,9 @@ if ($('#videos').children().length == 0){
 
 /* EVENT JAVASCRIPT */
 $('#previous,#next, #videos a').on('click', function (e) {
-    e.preventDefault()
+    e.preventDefault();
     const video = $(e.target).text();
-    loadVideo(video)
+    loadVideo(video);
 });
 
 
@@ -57,8 +57,7 @@ function getAllVideos() {
 /* Récupère un paramètre GET à travers son nom (exemple: http://localhost/streaming/index.php?directory=animes   =>  si je passe 'directory' je récupère 'animes') */
 function getParameter(param) {
 	var vars = {};
-	window.location.href.replace( location.hash, '' ).replace( 
-		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+	window.location.href.replace( location.hash, '' ).replace( /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
 		function( m, key, value ) { // callback
 			vars[key] = value !== undefined ? value : '';
 		}

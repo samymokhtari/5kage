@@ -1,16 +1,6 @@
 ###################################################################
-# The Ultimate robots.txt Bot and User-Agent Blocker
-# Copyright:
-# https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker
+# Firewall for blokings spybots
 ###################################################################
-
-### Version Information #
-###################################################
-### Version: V4.2020.05.2063
-### Updated: Mon May 11 22:45:30 SAST 2020
-### Bad Bot Count: 573
-###################################################
-### Version Information ##
 
 User-agent: *
 Disallow: /wp-admin/
