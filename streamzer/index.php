@@ -28,6 +28,7 @@ include 'directories.php';
         <?php include("header.php"); ?>
         <main>
             <section>
+            <div data-container class = "container-xl container-lg">
             <?php
             /* Si un paramètre est passé dans la requête (exemple: http://localhost/streaming/index.php?directory=animes%2FMy+Hero+Academia) affiche le dossier en question */
             if($_SERVER['REQUEST_METHOD'] == "GET" and isset($_GET['directory']))
@@ -40,6 +41,7 @@ include 'directories.php';
                 readDirectory("animes");
             }   
             ?>
+            </div>
             </section>
             
             <section id="div-video" class="vjs-fade-out fadeInOpacity">

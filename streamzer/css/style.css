@@ -2,14 +2,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
 label {
     color :rgb(235, 235, 235);
 }
 
-h1 {
+/** NEW DESIGN **/
+
+.h1 {
+    font-size: 40px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 100%;
+}
+
+[data-content-img] {
+    border-radius: 5px;
+    width:  100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+[data-container] {
+    margin-top: 70px;
+}
+
+
+
+.card {
+    background-color: transparent;
+    border: none;
+    margin-bottom:30px;
+    transition: transform .2s; /* Animation */
+
+}
+
+h5, h1{
     color : rgb(255, 255, 255);
 }
+
+.card-title{
+    font-size: 16px;
+    margin-top: 10px;
+    font-family: 'Oswald', sans-serif;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+    border-radius: 0;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000000;
+  }
+  
+  .card:hover .overlay {
+    opacity: .5;
+  }
+
+  .zoom:hover {
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  
+  .overlay-text {
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    filter: drop-shadow(0 0 1rem rgb(219, 68, 68));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+/*
+@media (max-width: 768px) {
+    [data-content-img] {
+        width:  100%;
+        height: 310px;
+    }
+}
+
+@media (max-width: 1100px) {
+    [data-content-img] {
+        width:  100%;
+        height: 150px;
+    }
+}
+
+*/
+/*******************/
 
 button.block {
     display: block;
@@ -17,6 +118,7 @@ button.block {
     color:rgb(0, 0, 0);
     /*background-color: #ffffffe8;*/
 }
+
 
 
 div.tree-view.h1 {
