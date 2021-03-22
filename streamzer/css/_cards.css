@@ -1,0 +1,64 @@
+.card {
+  background-color: transparent;
+  border: none;
+  margin-bottom:30px;
+  transition: transform .2s; /* Animation */
+}
+
+
+.card-title{
+  font-size: 16px;
+  margin-top: 10px;
+  font-family: 'Oswald', sans-serif;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+    border-radius: 0;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+.card:hover .overlay {
+  opacity: .5;
+  box-shadow: 0px 0px 10px black;
+}
+
+.zoom:hover {
+  transform: scale(1.1); 
+}
+
+.overlay-text {
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  filter: drop-shadow(0 0 1rem rgb(219, 68, 68));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 991px) {
+  .overlay {
+    opacity: 0.5;
+  }
+}

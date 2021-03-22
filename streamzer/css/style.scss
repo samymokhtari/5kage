@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+label {
+    color :rgb(235, 235, 235);
+}
+
+/** NEW DESIGN **/
+.container-fluid {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+.h1 {
+    font-size: 40px;
+    text-align: left;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+form {
+    width: 100%;
+}
+[data-container] {
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+[data-content-img] {
+    border-radius: 8px;
+    width:  100%;
+    height: 200px;
+    object-fit: cover;
+    
+}
+[data-content-img].img-anime-large-size {
+    height: 100%;
+    max-height: 500px;
+}
+[data-content-picture]{
+    display: flex;
+    height: 100%;
+    
+}
+[data-content-picture]::after {
+    content: " ";
+    margin-left: 15px;
+    margin-right: 10px;
+    border: 1px solid rgb(197, 197, 197);
+    height: 100%;    
+    animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+@keyframes slideInFromTop {
+    0% {
+      transform: scaleY(0);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+h5, h1{
+    color : rgb(255, 255, 255);
+}
+
+/*******************/
+
+button.block {
+    display: block;
+    width: 100%;
+    color:rgb(0, 0, 0);
+}
+
+div.tree-view.h1 {
+    color: black;
+    
+}
+
+.dropdown{
+    margin-top: 20px;
+}
+
+div.tree-view{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px 3% 30px 3%;
+    border-radius: 5px;
+    background-color: rgb(26, 29, 30,1);
+    box-shadow: 0 0 0.95rem rgb(60, 52, 100);
+
+}
+
+div.directories{
+    margin-bottom: 20px;
+}
+
+
+body {
+    background:#141414;
+    font-family: 'DM Sans', sans-serif;
+}
+
+main {
+    text-align: center;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}

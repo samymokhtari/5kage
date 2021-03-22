@@ -19,34 +19,31 @@ include 'directories.php';
         <link rel="icon" href="./assets/logo.png" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
-        
-        <link href="css/header.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/footer.css" rel="stylesheet">
+        <link href="css/index.scss" rel="stylesheet">
     </head>
     <body>
         <?php include("header.php"); ?>
-        <main>
-            <section>
-            <div data-container class = "container-xl container-lg">
-            <?php
-            /* Si un paramètre est passé dans la requête (exemple: http://localhost/streaming/index.php?directory=animes%2FMy+Hero+Academia) affiche le dossier en question */
-            if($_SERVER['REQUEST_METHOD'] == "GET" and isset($_GET['directory']))
-            {
-                readDirectory($_GET['directory']);
-            }
-            /* Sinon affiche le dossier racine animes*/
-            else
-            {
-                readDirectory("animes");
-            }   
-            ?>
-            </div>
+        <main class = "container-fluid">
+            <section data-container>
+                <?php
+                /* Si un paramètre est passé dans la requête (exemple: http://localhost/streaming/index.php?directory=animes%2FMy+Hero+Academia) affiche le dossier en question */
+                if($_SERVER['REQUEST_METHOD'] == "GET" and isset($_GET['directory']))
+                {
+                    readDirectory($_GET['directory']);
+                }
+                /* Sinon affiche le dossier racine animes*/
+                else
+                {
+                    readDirectory("animes");
+                }   
+                ?>
             </section>
             
-            <section id="div-video" class="vjs-fade-out fadeInOpacity">
+            <section data-container id="div-video" class="vjs-fade-out fadeInOpacity">
                     <div class="video-informations">
+                        <button id="previous" data-value="" class="btn btn-outline">Précédent</button>
                         <label for="my-video" id="title"></label>
+                        <button id="next"  data-value="" class ="btn btn-outline">Suivant</button>
                     </div>
 
                     <video 
@@ -56,8 +53,7 @@ include 'directories.php';
                         Sorry, your browser doesn't support embedded videos. 😞
                     </video>
                     <div class="video-controls">
-                        <button id="previous" value="" class="btn btn-outline-info">Épisode précédent</button>
-                        <button id="next" value="" class =" btn btn-outline-info">Épisode suivant</button>
+                        
                     </div>
             </section>
         </main>

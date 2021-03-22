@@ -52,13 +52,16 @@ function uploadFiles() {
 
         <link rel="icon" href="../assets/logo.png" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <!-- Bootstrap -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <link href="css/style.css" rel="stylesheet">
-        <link href="../css/header.css" rel="stylesheet">
-        <link href="../css/footer.css" rel="stylesheet">
-    </head>
+        
+        <!-- fa fa icons -->
+        <link href="../css/font_awesome/css/fontawesome.min.css" rel="stylesheet">
+        
+        <link href="css/index.scss" rel="stylesheet">
     <body>
         <?php include("header.php"); ?>
         <main>
@@ -73,7 +76,9 @@ function uploadFiles() {
             <form method='post' action='' enctype='multipart/form-data'>
               <div class="container w-50">
                 <div class="row fields">
-                  <div class="col">
+                  <div class="col-12">
+                    <h1 class="mb-4">UPLOAD UN ANIME</h1>
+                    <i class="fas fa-user"></i> <!-- uses solid style -->
                     <div class="input-group input-group-sm mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Anime</span>
@@ -86,6 +91,14 @@ function uploadFiles() {
                       </div>
                       <input type="number" name="season" min=1 max=99 placeholder="Numéro de la saison.." class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
+
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" accept=".jpg,.png" class="custom-file-input" id="inputGroupFile01">
+                        <label class="custom-file-label" for="inputGroupFile01">Image de l'anime</label>
+                      </div>
+                    </div>
+
                     <div class="input-group mb-3">
                       <div class="custom-file">
                         <input type="file" accept=".mp4" name="file[]" id="file" multiple class="custom-file-input">
@@ -95,7 +108,7 @@ function uploadFiles() {
                         <input class="btn btn-success input-group-text" type='submit' name='submit' value='Envoyer'/>
                       </div>
                     </div>
-                    <p class="p-3 mb-2 text-light bg-dark">Veuillez ne pas upload plus de 5 Go à la fois.</p>
+                    <p class="p-3 mb-2 text-light bg-dark message-info">Veuillez ne pas upload plus de 5 Go à la fois.</p>
                   </div>
                   <ul id="file-uploaded">
 

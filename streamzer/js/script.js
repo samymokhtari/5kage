@@ -9,7 +9,8 @@ if ($('#videos').children().length == 0){
 /* EVENT JAVASCRIPT */
 $('#previous,#next, #videos a').on('click', function (e) {
     e.preventDefault();
-    const video = $(e.target).text();
+    console.log(e)
+    const video = $(e.target).attr('data-value');
     loadVideo(video);
 });
 
@@ -35,13 +36,13 @@ function configureNextAndPreviousVideo(currentVideo) {
     currentVideoIndex = videos.indexOf(currentVideo);
     if(videos[currentVideoIndex - 1]) {
         $('#previous').show();
-        $('#previous').html(videos[currentVideoIndex - 1]);
+        $('#previous').attr('data-value', videos[currentVideoIndex - 1]);
     }else{
         $('#previous').hide();
     }
     if(videos[currentVideoIndex + 1]) {
         $('#next').show();
-        $('#next').html(videos[currentVideoIndex + 1]);
+        $('#next').attr('data-value', videos[currentVideoIndex + 1]);
     }else {
         $('#next').hide();
     }

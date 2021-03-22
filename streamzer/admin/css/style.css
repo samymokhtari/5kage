@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap');
 
-* {
-    box-sizing: border-box
-} 
 
 body {
     background-color: rgb(241, 241, 241);
@@ -18,9 +15,14 @@ body {
 .fields{
     margin-bottom: 20px;
     padding: 10px;
-    border-radius: 0%;
-    background-color: rgb(224, 224, 224);
-    filter: drop-shadow(0 0 0.15rem rgb(0, 0, 0));
+    border-radius: 10px;
+    background-color: rgb(211, 212, 223);
+    box-shadow: 0 0 10px black;
+}
+
+ .message-info {
+    border-radius: 10px;
+    box-shadow: 0 0 3px black;
 }
 
 .navigation-content {

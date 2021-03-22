@@ -1,0 +1,66 @@
+/* Override bootstrap */
+
+.btn {
+    background-color: #1370EB;
+    font-weight: 700;
+    color: white;
+    border:none;
+    border-radius: 100vh;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+
+.btn-secondary:hover {
+    background-color: #1164D1;
+    box-shadow: 0 0 5px rgb(5, 5, 5);
+    border:none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active {
+    background-color: #1164D1;
+    border:none;
+}
+.btn-secondary:focus {
+    box-shadow: none;
+    background-color: #1164D1;
+}
+
+.btn-back {
+    margin-bottom: 30px;
+}
+
+
+/* Dropdown buttons */
+.dropdown > .btn, .dropdown > .btn:hover {
+    display: inline-flex;
+    background-color: #EB6150;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.dropdown > .btn:not(:disabled):not(.disabled):active, .dropdown > .btn:focus, .dropdown-item:active {
+    background-color: #D15747;
+    border:none;
+}
+
+.dropdown-item.active {
+    background-color: white;
+    color: black;
+}
+
+/* Outline buttons */
+
+.btn-outline {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #c9c9c9;
+    color: #05012e;
+    padding: 2px 13px;
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
