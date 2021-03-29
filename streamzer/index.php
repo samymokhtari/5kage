@@ -3,6 +3,7 @@
 /* Import des fichiers PHP nécessaire */
 include 'videos.php';
 include 'directories.php';
+include 'display-picture.php';
 
 ?>
 
@@ -25,37 +26,48 @@ include 'directories.php';
         <?php include("header.php"); ?>
         <main class = "container-fluid">
             <section data-container>
+            
                 <?php
                 /* Si un paramètre est passé dans la requête (exemple: http://localhost/streaming/index.php?directory=animes%2FMy+Hero+Academia) affiche le dossier en question */
                 if($_SERVER['REQUEST_METHOD'] == "GET" and isset($_GET['directory']))
                 {
-                    readDirectory($_GET['directory']);
+                    $directory = $_GET['directory'];
                 }
                 /* Sinon affiche le dossier racine animes*/
                 else
                 {
-                    readDirectory("animes");
-                }   
+                    $directory = 'animes';
+                } 
+                echo "<h1 class='h1'>". strtoupper($directory) ."</h1>
+                        <form action='index.php' method='get'>
+                            <div class='row'>";
+                if($directory != 'animes') {
+                    echo "<div class='col-12 col-md-7'>";
+                    echo display_picture($directory);
+                    ?>
+                        <section id="div-video" class="vjs-fade-out fadeInOpacity">
+                            <div class="video-informations d-flex justify-content-between align-items-center">
+                                <button id="previous" data-value="" class="btn btn-outline">Précédent</button>
+                                <label for="my-video" id="title"></label>
+                                <button id="next"  data-value="" class ="btn btn-outline">Suivant</button>
+                            </div>
+
+                            <video 
+                            controls 
+                            preload="auto" 
+                            id="my-video">
+                                Sorry, your browser doesn't support embedded videos. 😞
+                            </video>
+                        </section>
+                    </div>
+                    <?php
+                }
+                
+                readDirectory($directory);
                 ?>
             </section>
             
-            <section data-container id="div-video" class="vjs-fade-out fadeInOpacity">
-                    <div class="video-informations">
-                        <button id="previous" data-value="" class="btn btn-outline">Précédent</button>
-                        <label for="my-video" id="title"></label>
-                        <button id="next"  data-value="" class ="btn btn-outline">Suivant</button>
-                    </div>
-
-                    <video 
-                    controls 
-                    preload="auto" 
-                    id="my-video">
-                        Sorry, your browser doesn't support embedded videos. 😞
-                    </video>
-                    <div class="video-controls">
-                        
-                    </div>
-            </section>
+            
         </main>
 
         <?php include("footer.php"); ?>

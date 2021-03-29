@@ -7,7 +7,6 @@
     border:none;
     border-radius: 100vh;
     text-transform: uppercase;
-    margin-bottom: 10px;
     min-height: 50px;
 }
 
@@ -32,18 +31,24 @@
 
 
 /* Dropdown buttons */
-.dropdown > .btn, .dropdown > .btn:hover {
+.dropdown > .btn {
     display: inline-flex;
-    background-color: #EB6150;
+    background-color: #36b372;
     justify-content: space-between;
     align-items: center;
     padding-left: 35px;
     padding-right: 35px;
 }
 
+.dropdown > .btn:hover {
+    color: white;
+    background-color: #2f9e65;
+}
+
 .dropdown > .btn:not(:disabled):not(.disabled):active, .dropdown > .btn:focus, .dropdown-item:active {
-    background-color: #D15747;
+    background-color: #2f9e65;
     border:none;
+    box-shadow: none;
 }
 
 .dropdown-item.active {
@@ -63,4 +68,18 @@
 
 .btn-outline:hover {
     background-color: rgba(255, 255, 255, 1);
+}
+
+@media only screen and (max-width: 767px) {
+    .btn-outline {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    .btn-outline {
+        font-size: 12px;
+        padding: 1px 8px;
+        min-height: 40px;
+    }
 }

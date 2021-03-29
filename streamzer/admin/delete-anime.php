@@ -1,10 +1,19 @@
 <?php 
 
 include '../util/read-animes.php';
+include '../util/functions.php';
 
-function deleteFile($path){
-    echo $path;
+function deleteAnime($anime){
+    try {
+      deleteDir(ANIME_DIRECTORY.$anime);
+      echo "<p class='alert alert-success'>L'anime ".$anime." à été supprimé avec succès !</p>";
+    }catch (Exception $error) {
+      echo "<p class='alert alert-danger'> Impossible de supprimer l'anime ".$anime."</p>";
+    }
+    
 }
+
+
 
 /* Display animes as a dropdown */
 function display_animes_as_dropdown() {
@@ -33,39 +42,28 @@ function display_animes_as_dropdown() {
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script type="module" src="js/delete-video.js"></script>
-        <script type="module" src="js/add-video.js"></script>
+
 
         <link href="css/index.scss" rel="stylesheet">
     </head>
     <body>
       <?php include("header.php"); ?>
       <main>
-
-        <?php 
-        
-        if(isset($_POST['submit'])) {
-          deleteFile('test');
-        }
-        ?>
-
-        <form id="form-container" method='post' action='' enctype='multipart/form-data'>
+        <form id="form-container" method='post' action='delete-anime.php' enctype='multipart/form-data'>
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-9 col-lg-6 fields ml-auto mr-auto">
-              <h1>Supprimer du contenu</h1>
-              <h5>(en développement)</h5>
+              <h1>Supprimer un anime</h1>
                 <?php 
                     display_animes_as_dropdown();
                 ?>
-                <div data-admin-seasons>
-									<select disabled class=" d-flex w-100 disabled" id="dropdown_seasons" name="cscf[season]">
-										<!-- Seasons will be inserted here by jQuery -->
-                    <option selected='selected'>-</option>
-									</select>
-								</div>
-                <div data-admin-episodes>
-                </div>
+                <button id='btn-delete' class='w-100 btn btn-danger' value='submit' type='submit'>Supprimer</button>
+                <?php 
+                  if (isset($_POST['cscf']['anime'])) {
+                    deleteAnime($_POST['cscf']['anime']);
+                    header("Refresh:2"); // Refresh la page après 2 secondes
+                  }
+                ?>
               </div>
             </div>
           </div>
@@ -73,5 +71,10 @@ function display_animes_as_dropdown() {
       </main>
 
       <?php include("../footer.php"); ?>
+      <script>
+        $('#btn-delete').click(function() {
+          confirm("Tu es sûr de vouloir supprimer cet anime ?\nOK ou Annuler.")
+        }) 
+      </script>
     </body>
 </html>

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap');
+
+
+body {
+    background-color: rgb(241, 241, 241);
+}
+
+/*** Add video ***/
+
+#form-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    
+}
+
+h1 { 
+    font-family: 'Bebas Neue', cursive;
+}
+
+.fields{
+    margin-bottom: 20px;
+    padding: 20px 10px;
+    border-radius: 5px;
+    background-color: rgb(231, 231, 231);
+    box-shadow: 0 0 2px black;
+}
+
+.custom-file-label::after {
+    content: "Recherche"
+}
+
+.navigation-content {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 20px;
+}
+
+/* Loading bar */
+.progress {
+    display:none; 
+    position:relative; 
+    width:100%; 
+    height: fit-content;
+    border: 1px solid #ddd; 
+    padding: 1px; 
+    border-radius: 3px; 
+}
+.bar { 
+    background-color: #B4F5B4; 
+    width:0%; 
+    height:20px; 
+    border-radius: 3px; 
+}
+.percent { 
+    position:absolute; 
+    display:inline-block; 
+    top:3px; 
+    left:48%; 
+}
+
+
+/*** Add anime ***/
+.form-control:focus {
+    border: 0;
+    outline: 0!important;
+    box-shadow: 0 0 0 0 transparent!important;
+}
+
+
+select {
+    margin-bottom: 20px;
+    text-align-last: center;
+}
+
+
+/*** Delete anime ***/
+.seasons {
+    margin: 4px;
+    background: aliceblue;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.checkbox-all-episodes {
+    font-weight: 700;
+}

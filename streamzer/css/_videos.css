@@ -3,11 +3,12 @@
 #div-video {
     align-items: center;
     justify-content: center;
-    padding-bottom: 10%;
-
+    margin-bottom: 10%;
+    padding-right:15px; 
+    border-right: 2px solid rgb(197, 197, 197);
 }
 .video-informations {
-    background-color: #E65140;
+    background-color: #36BA76;
     padding: 10px;
     margin-top: 0px;
     margin-bottom: 20px;
@@ -16,18 +17,25 @@
     margin-right: auto;
     border-radius: 2px;
 }
-video{
+#my-video{
     margin-bottom: 0;
-    border-radius: 2px;
+    border: 0;
+    border-radius: 15px;
     object-fit: contain;
     max-height: calc(100vw * 0.5625);
+}
+
+#my-video:focus, button:focus {
+    border: 0;
+    outline: 0!important;
+    box-shadow: 0 0 0 0 transparent!important;
 }
 
 .video-informations > label {
     color:white;
     font-weight: 700;
     font-size: 30px;
-    margin-bottom: 3px;
+    margin-bottom: 0;
     font-family: 'Barlow', sans-serif;
 }
 
@@ -52,22 +60,14 @@ video{
     font-size: 20px;
 }
 
-#previous {
-    float: left;
-}
-
-#next {
-    float: right;
-}
-
-/* animation vidoe */
+/* animation video */
 
 .vjs-fade-out {
         opacity: 1;
         animation-name: fadeInOpacity;
         animation-iteration-count: 1;
         animation-timing-function: ease-in;
-        animation-duration: 2s;
+        animation-duration: 0.5s;
     }
     
     @keyframes fadeInOpacity {
@@ -82,21 +82,18 @@ video{
 /* Responsive VIDEO PLAYER */
 
 @media only screen and (max-width: 1100px) {
-
-
     .video-informations > a {
         margin: 0 50px 0 50px;
-        font-size: 16px;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    .video-informations > a {
+    .video-informations > button {
         margin: 0 5px 0 5px;
-        font-size: 16px;
     }
     .h1 {
-        font-size: 24px;
+        text-align: center;
+        font-size: 40px;
         margin-bottom: 25px;
     }
 
@@ -108,27 +105,19 @@ video{
         margin-bottom: 30px;
         
     }
-    [data-content-picture]::after {
+    
+    [data-content-picture]::after, #div-video {
         margin-left: 0;
+        padding: 0;
         border: none;
     }
-    
-
 }
 
 @media only screen and (max-width: 415px) {
-
-    .video-informations > a {
-        font-size: 12px;
-    }
-    .video-informations > * {
-        margin: 0;
-        padding:0;
-    }
     .video-informations {
         padding : 1px;
     }
     .h1 {
-        font-size: 20px;
+        font-size: 30px;
     }
 }

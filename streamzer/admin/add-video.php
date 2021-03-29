@@ -2,40 +2,52 @@
 
 <?php
 
+include '../util/read-animes.php';
 
 /* Upload les fichiers reçus dans le dossiers anime et la saison correspondante */
 function uploadFiles() {
+
   // Count total files
   $countfiles = count($_FILES['file']['name']); 
-
-  if ( (empty($_POST['name'])) || (empty($_POST['season'])) || ($countfiles == 1 && empty($_FILES['file']['name'][0])) ) {
-    echo ("<p class='alert alert-danger text-center' role='alert'>Des informations sont manquantes </p>");
-    return;
+	echo "salut";
+  if ( (empty($_POST['cscf']['anime'])) || (empty($_POST['cscf']['season'])) || ($countfiles == 1 && empty($_FILES['file']['name'][0])) ) {
+	echo ("<p class='alert alert-danger text-center' role='alert'>Des informations sont manquantes </p>");
+	return;
   }
-  $name = $_POST['name'];
-  $season = $_POST['season'];
+  $name = $_POST['cscf']['anime'];
+  $season = $_POST['cscf']['season'];
   
-  $fullpath = "../animes/".$name."/Saison ".$season."/";
+  $current_anime_directory = "../animes/".$name."/";
+  $fullpath = $current_anime_directory."/".$season."/";
   if(!file_exists($fullpath)){
-    mkdir($fullpath, 0777, true);
+	mkdir($fullpath, 0777, true);
   }
 
+  /* Upload all episodes */
   $filesUploaded = [];
   // Looping all files
   for($i=0;$i<$countfiles;$i++){
-    $filename = $_FILES['file']['name'][$i];
-    $filesize = number_format(($_FILES['file']['size'][$i] / 1000000),2);
+	$filename = $_FILES['file']['name'][$i];
+	$filesize = number_format(($_FILES['file']['size'][$i] / 1000000),2);
 
-    // Upload file
-    move_uploaded_file($_FILES['file']['tmp_name'][$i],$fullpath.$filename);
-    array_push($filesUploaded, "<li>Fichier : <strong>$filename</strong> 	→  $filesize Mo ✔</li>");
+	// Upload file
+	move_uploaded_file($_FILES['file']['tmp_name'][$i],$fullpath.$filename);
+	array_push($filesUploaded, "<li>Fichier : <strong>$filename</strong> 	→  $filesize Mo ✔</li>");
   }
-  echo ("<p class='alert alert-success text-center' role='alert'>Les épisodes de la saison <strong>". $_POST['season'] ."</strong> pour l'anime <strong>". $_POST['name'] ."</strong> ont bien été téléchargés.</p>");
   foreach($filesUploaded as $msg){
-    echo $msg;
+	echo $msg;
   }
 } 
 
+/* Display animes as a dropdown */
+function display_animes_as_dropdown() {
+	$animes = read_animes();
+	echo '<select class="d-flex w-100" id="dropdown_animes" name="cscf[anime]">';
+	foreach($animes as $anime) 
+		echo '<option data-value="'.$anime.'">'. $anime .'</option>';
+
+	echo '</select>';
+}
 
 
 ?>
@@ -43,83 +55,77 @@ function uploadFiles() {
 <!-- PARTIE HTML -->
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Ajouter un anime">
-        <meta name="author" content="Hocem Boualleg, Samy Mokhtari">
-        <title>Ajouter une vidéo</title>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Ajouter un anime">
+		<meta name="author" content="5KAGE">
+		<title>Ajouter une vidéo</title>
 
-        <link rel="icon" href="../assets/logo.png" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        
-        <!-- Bootstrap -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        
-        <!-- fa fa icons -->
-        <link href="../css/font_awesome/css/fontawesome.min.css" rel="stylesheet">
-        
-        <link href="css/index.scss" rel="stylesheet">
-    <body>
-        <?php include("header.php"); ?>
-        <main>
+		<link rel="icon" href="../assets/logo.png" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		
+		<!-- Bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		
+		<link href="css/index.scss" rel="stylesheet">
 
-          <?php 
-          if(isset($_POST['submit']) ){
-            uploadFiles();
-          }
-          ?>
+		<!-- JS -->
+		<script type="text/javascript" src="js/add-video.js"></script>
+	<body>
+		<?php include("header.php"); ?>
+		<main>
 
-          <div id="form-container">
-            <form method='post' action='' enctype='multipart/form-data'>
-              <div class="container w-50">
-                <div class="row fields">
-                  <div class="col-12">
-                    <h1 class="mb-4">UPLOAD UN ANIME</h1>
-                    <i class="fas fa-user"></i> <!-- uses solid style -->
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Anime</span>
-                      </div>
-                      <input type="text" name="name" placeholder="Nom de l'anime.." class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Saison</span>
-                      </div>
-                      <input type="number" name="season" min=1 max=99 placeholder="Numéro de la saison.." class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                    </div>
+			<?php 
+			if(isset($_POST['submit_videos']) ){
+				uploadFiles();
+			}
+			?>
 
-                    <div class="input-group mb-3">
-                      <div class="custom-file">
-                        <input type="file" accept=".jpg,.png" class="custom-file-input" id="inputGroupFile01">
-                        <label class="custom-file-label" for="inputGroupFile01">Image de l'anime</label>
-                      </div>
-                    </div>
+			<div data-add-video id="form-container">
+				<form id="form-add-videos" method='post' action='add-video.php' enctype='multipart/form-data'>
+					<div class="container">
+						<div class="row fields">
+							<div class="col-12">
+								<h1 class="mb-4">AJOUTER DU CONTENU</h1>
+								<div data-admin-animes>
+									<?php 
+									display_animes_as_dropdown();
+									?>
+								</div>
+								<div data-admin-seasons>
+									<select disabled class=" d-flex w-100 disabled" id="dropdown_seasons" name="cscf[season]">
+										<!-- Seasons will be inserted here by jQuery -->
+									</select>
+								</div>
 
-                    <div class="input-group mb-3">
-                      <div class="custom-file">
-                        <input type="file" accept=".mp4" name="file[]" id="file" multiple class="custom-file-input">
-                        <label class="custom-file-label" for="file">Sélectionner les épisodes à envoyer</label>
-                      </div>
-                      <div class="input-group-append">
-                        <input class="btn btn-success input-group-text" type='submit' name='submit' value='Envoyer'/>
-                      </div>
-                    </div>
-                    <p class="p-3 mb-2 text-light bg-dark message-info">Veuillez ne pas upload plus de 5 Go à la fois.</p>
-                  </div>
-                  <ul id="file-uploaded">
+								<div class="input-group mb-3">
+									<div class="custom-file">
+										<input type="file" accept=".mp4" name="file[]" id="file" multiple class="custom-file-input">
+										<label class="custom-file-label" for="file">Sélectionner les épisodes à envoyer</label>
+									</div>
+									<div class="input-group-append">
+										<input class="btn btn-success input-group-text" type='submit' name='submit_videos' value='Envoyer' onclick='upload_videos();'/>
+									</div>
+								</div>
+								<p class="p-3 mb-2 alert alert-warning">Ne pas upload plus de 10 Go à la fois</p>
+								<div class='progress' id="progress_div">
+									<div class='bar' id='bar1'></div>
+									<div class='percent' id='percent1'>0%</div>
+								</div>
+							</div>
+							<ul id="file-uploaded">
 
-                  </ul>
-                </div>
-              </div>
-            </form>
-          </div>
-        </main>
-
-        <?php include("../footer.php"); ?>
-    </body>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</div>
+		</main>
+		<?php include("../footer.php"); ?>
+	</body>
 </html>
 
