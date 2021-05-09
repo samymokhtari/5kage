@@ -12,23 +12,26 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <title>Streamzer</title>
+        <title>{{ config('app.name', 'Streamzer') }}</title>
     </head>
     <body>
 
         <header>
-            <nav id="navigation-bar" class="navigation-content navbar bg-dark ">
+            <nav id="navigation-bar" class="navigation-content navbar bg-dark p-1">
                 <a class="navbar-brand" href="{{ route('home') }} ">
-                    <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Home - Streamzer">
-                    Streamzer
+                    <img src="/images/logo.png" width="35" height="35" class="d-inline-block align-top" alt="Home - Streamzer">
+                    {{ config('app.name', 'Streamzer') }}
                 </a>
-                <a href="{{ route('admin-home') }}">Administration</a>
+                <a href="{{ route('admin.home') }}">Administration</a>
             </nav>
         </header>
 
-        @yield('content')
+        <main class="container">
+            @yield('content')
+        </main>
+        
 
-        <footer class="text-muted py-1">
+        <footer class="text-muted text-center py-1">
             <div class="container">
                 <p class="mb-1"><a href="https://5kage.xyz"> 5KAGE </a> // Streamzer 📺</p>
             </div>
