@@ -40,7 +40,7 @@ class Movie extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'description', 'author', 'date_release', 'picture', 'updated_at'];
+    protected $fillable = ['name', 'description', 'path', 'author', 'date_release', 'picture', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

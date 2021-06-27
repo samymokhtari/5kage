@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 /* --------- FRONT OFFICE --------- */
 /*** HOME ***/
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 /*** CATEGORIES ***/
 Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories');

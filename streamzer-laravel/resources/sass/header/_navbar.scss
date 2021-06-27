@@ -1,0 +1,49 @@
+nav {
+    &.bg-custom-dark {
+        background: linear-gradient($bg-custom-dark-top, $bg-custom-dark-bottom);
+    }
+    &.navbar {
+        justify-content: start;
+    }
+    img {
+        opacity: 0.7;
+        transition: .3s ease-in-out; 
+        &:hover {
+            opacity: 1;
+        }
+    }
+    ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        .admin-link {
+            width: 100%;
+        }
+        li {
+            margin: 0 15px;
+            align-self: center;
+            a {
+                font-size: 15px;
+                color: $grey-lighter;
+                &:hover {
+                    text-decoration: none;
+                    color: $grey;
+                    transition: 0.5s;
+                }
+            }
+        }
+    }
+    .navbar-toggler {
+        color: $white;
+    }
+}
+
+@include media-breakpoint-down(md) {
+    nav {
+        ul{
+            .admin-link {
+                width: auto;
+            }
+        }
+    }
+}

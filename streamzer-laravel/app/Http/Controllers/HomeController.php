@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use App\Serie;
+use App\Services\MovieService;
 
 class HomeController extends Controller
 {
@@ -12,12 +14,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $movies = Movie::all();
-        return view('pages/movies', [
+        $movies = (new MovieService())->retrieveAllFilms($request);
+        $series = Serie::all();
+        return view('pages/home', [
             'movies' => $movies,
+            'series' => $series
         ]);
-        return view('home');
+    }
+
+    /**
+     * Show the application about page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function about()
+    {
+        return view('pages/about');
     }
 }
