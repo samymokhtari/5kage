@@ -27,6 +27,8 @@
                     </button>
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                         <ul class="w-100 navbar-nav flex-nowrap">
+                            
+                            @if (!(Route::has('login')))
                             <li class="nav-item">
                                 <a href="{{ route('movies') }}">Films</a>
                             </li class="nav-item">
@@ -36,11 +38,45 @@
                             <li class="nav-item">
                                 <a href="{{ route('about') }}">À propos</a>
                             </li>
+                            @endif
                             <li class="admin-link d-md-inline-block">
                                 <ul class="admin-link d-lg-flex d-md-inline-block justify-content-end m-0 p-0">
-                                    <li class="m-0 p-0">
-                                        <a href="{{ route('admin.home') }}">Administration</a>
-                                    </li>
+                                    @guest
+                                    @if (Route::has('login'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
+                                        </li>
+                                    @endif
+
+                                    @if (Route::has('register'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
+                                        </li>
+                                    @endif
+                                    @else
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                {{ Auth::user()->name }}
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                    {{ __('auth.logout') }}
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </li>
+                                        @if (Auth::user()->is_admin)
+                                        <li class="nav-item dropdown">
+                                            <a href="{{ route('admin.home') }}">Administration</a>
+                                        </li>
+                                        @endif
+                                    @endguest
                                 </ul>
                             </li>
                         </ul>
@@ -56,7 +92,7 @@
 
         <footer class="text-muted text-center py-1">
             <div class="container">
-                <p class="mb-1"><a href="https://5kage.xyz"> 5KAGE </a> // Streamzer 📺</p>
+                <p class="mb-1"><a href="https://5kage.xyz"> 5KAGE </a> | 2021 | Streamzer | A propos | 1.0 </p>
             </div>
         </footer>
     </body>

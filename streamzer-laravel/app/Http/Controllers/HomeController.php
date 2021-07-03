@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Movie;
 use App\Serie;
 use App\Services\MovieService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class HomeController extends Controller
 {
@@ -16,8 +17,12 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $movies = (new MovieService())->retrieveAllFilms($request);
-        $series = Serie::all();
+        try {
+            $movies = (new MovieService())->getMovieList($request);
+            $series = Serie::all();
+        } catch(ModelNotFoundException $exception) {
+            return view('pages/error');
+        }
         return view('pages/home', [
             'movies' => $movies,
             'series' => $series

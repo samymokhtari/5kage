@@ -5,30 +5,31 @@ use Illuminate\Support\Facades\Route;
 /* --------- FRONT OFFICE --------- */
 /*** HOME ***/
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
-/*** CATEGORIES ***/
-Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories');
-Route::get('/category/{category}', [App\Http\Controllers\CategoryController::class, 'category.get']);
+Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
-/*** MOVIES ***/
-Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])->name('movies');
-Route::get('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'show'])->name('movie.get');;
+    /*** CATEGORIES ***/
+    Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories');
+    Route::get('/category/{category}', [App\Http\Controllers\CategoryController::class, 'category.get']);
 
-/*** SERIES ***/
-Route::get('/series', [App\Http\Controllers\MovieController::class, 'index'])->name('series');
-Route::get('/series/{serie}', [App\Http\Controllers\MovieController::class, 'show'])->name('serie.get');
+    /*** MOVIES ***/
+    Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])->name('movies');
+    Route::get('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'show'])->name('movie.get');;
 
-/*** EPISODES ***/
-Route::get('/series/{serie_id}/{season}', [App\Http\Controllers\EpisodeController::class, 'index'])->name('episodes');
-Route::get('/series/{serie_id}/{season}/{episode}', [App\Http\Controllers\EpisodeController::class, 'show'])->name('episode.get');
+    /*** SERIES ***/
+    Route::get('/series', [App\Http\Controllers\MovieController::class, 'index'])->name('series');
+    Route::get('/series/{serie}', [App\Http\Controllers\MovieController::class, 'show'])->name('serie.get');
+
+    /*** EPISODES ***/
+    Route::get('/series/{serie_id}/{season}', [App\Http\Controllers\EpisodeController::class, 'index'])->name('episodes');
+    Route::get('/series/{serie_id}/{season}/{episode}', [App\Http\Controllers\EpisodeController::class, 'show'])->name('episode.get');
 
 
-/* --------- BACK OFFICE --------- */
+    /* --------- BACK OFFICE --------- */
 
-Route::prefix('admin')->group(function () {
-    Auth::routes();
-    Route::middleware(['auth'])->group(function () {
+    Route::prefix('admin')->group(function () {
         Route::name('admin.')->group(function () {
 
             Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('home');

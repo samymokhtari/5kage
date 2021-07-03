@@ -10035,6 +10035,9 @@ a:hover {
   transition: 0.5s;
 }
 
+nav {
+  margin-bottom: 35px;
+}
 nav.bg-custom-dark {
   background: linear-gradient(#121212, #212121);
 }
@@ -10077,4 +10080,12 @@ nav .navbar-toggler {
   nav ul .admin-link {
     width: auto;
   }
+}
+footer {
+  width: 100%;
+  margin-top: 4em;
+  display: block;
+  text-align: center;
+  position: relative;
+  bottom: 0;
 }

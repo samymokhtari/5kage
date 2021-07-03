@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class MovieService {
 
-    public function retrieveAllFilms(Request $request) {
+    public function getMovieList(Request $request) {
         return  Movie::all();
     }
 }
